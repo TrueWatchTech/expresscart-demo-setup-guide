@@ -1,25 +1,54 @@
 version: '3'
 services:
   expresscart:
-    image: "node:8"
+    image: "node:18-alpine"
     build: .
     container_name: "expresscart"
     environment:
       NODE_ENV: development
       NODE_PATH: /
+      DD_ENV: "devdemo"                             # DataKit environment
+      DD_AGENT_HOST: "host.docker.internal"                     # Must use localhost ip address. Containers unable to access localhost
+      DD_TRACE_AGENT_PORT: "9529"
+      DD_TRACE_128_BIT_TRACEID_GENERATION_ENABLED: "false"                   # DataKit trace port (default: 9529)
+      DD_SERVICE: "expresscart"
+      #DD_LOGS_INJECTION: "true"
     ports:
       - "1111:1111"
     links:
       - mongodb
     depends_on:
       - mongodb
+  nginx:
+    build: ./nginx
+    container_name: "nginx"  
+    environment:
+      DD_AGENT_HOST: "host.docker.internal"                     # Must use localhost ip address. Containers unable to access localhost
+      DD_TRACE_AGENT_PORT: "9529"                   # DataKit trace port (default: 9529)
+      DD_SERVICE: "expresscart"                    # Service name
+      DD_LOGS_INJECTION: "true"
+      DD_ENV: "devdemo"
+      #DD_TRACE_DEBUG: true
+      DD_TRACE_128_BIT_TRACEID_GENERATION_ENABLED: "false"
+      #NODE_ENV: development
+      #NODE_PATH: / 
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d    
+    ports:
+    - '8080:8080'
+    depends_on:
+    - expresscart
   mongodb:
-    image: mongo:3.4.10
+    image: mongo:latest
     container_name: "expresscart-mongodb"
+    environment:
+      DD_AGENT_HOST: "host.docker.internal"                     # Must use localhost ip address. Containers unable to access localhost
+      DD_TRACE_AGENT_PORT: "9529"                   # DataKit trace port (default: 9529)
+      DD_SERVICE: "expresscart"                     # Service name
     volumes:
       - expresscart-mongo-data:/data/db
     ports:
       - 27017:27017
-    command: mongod --smallfiles --logpath=/dev/null
+    command: mongod 
 volumes:
   expresscart-mongo-data:

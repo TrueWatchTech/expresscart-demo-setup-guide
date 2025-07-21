@@ -9,10 +9,8 @@ if(fs.existsSync('./env.yaml')){
     process.env = yenv('env.yaml', { strict: false });
 }
 const path = require('path');
-const winston = require('winston');
-const expressWinston = require('express-winston');
 const express = require('express');
-//const logger = require('morgan');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const moment = require('moment');
@@ -30,6 +28,7 @@ const { initDb, getDbUri } = require('./lib/db');
 const { writeGoogleData } = require('./lib/googledata');
 let handlebars = require('express-handlebars');
 const i18n = require('i18n');
+
 // Validate our settings schema
 const Ajv = require('ajv');
 const ajv = new Ajv({ useDefaults: true });
@@ -44,12 +43,11 @@ if(baseConfig === false){
 }
 //Pyroscope
 Pyroscope.init({
-  serverAddress: 'http://host.docker.internal:4040',
+  serverAddress: 'http://host.docker.internal:9529',
   appName: 'expresscart',
   tags: {
     region: 'id'
-  },
-  logLevel: 'debug',
+  }
 });
 // Start Pyroscope
 Pyroscope.start();
@@ -64,36 +62,6 @@ _.forEach(config.paymentGateway, (gateway) => {
         process.exit(2);
     }
 });
-
-// Winston logger configuration
-//const logger = winston.createLogger({
-//    level: 'info',
-//    format: winston.format.combine(
-//        winston.format.timestamp(),
-//        winston.format.json()
-//   ),
-//    transports: [
-//        new winston.transports.Console()
-//    ]
-//});
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.combine(
-    winston.format.errors({ stack: true }),
-    winston.format.timestamp(),
-    winston.format.json()
-  ),
-  transports: [
-    new winston.transports.Console()
-  ]
-});
-
-// Set logger globally for use in other modules
-global.logger = logger;
-
-if (fs.existsSync('./env.yaml')) {
-    process.env = yenv('env.yaml', { strict: false });
-}
 
 // require the routes
 const index = require('./routes/index');
@@ -407,14 +375,7 @@ if(!config.secretSession || config.secretSession === ''){
 app.enable('trust proxy');
 app.use(helmet());
 app.set('port', process.env.PORT || 1111);
-//app.use(logger('dev'));
-app.use(expressWinston.logger({
-   winstonInstance: logger,
-   meta: true,
-   expressFormat: true,
-   colorize: false,
-   ignoreRoute: function (req, res) { return false; }
- }));
+app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(config.secretCookie));
 app.use(session({

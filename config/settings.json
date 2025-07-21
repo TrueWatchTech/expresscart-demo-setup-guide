@@ -1,5 +1,5 @@
 {
-    "cartTitle": "CLOTH",
+    "cartTitle": "Truewatch Shops",
     "cartDescription": "expressCart",
     "cartLogo": "",
     "baseUrl": "http://localhost:1111",
@@ -20,7 +20,7 @@
     "paymentGateway": [
         "stripe"
     ],
-    "databaseConnectionString": "mongodb://127.0.0.1:27017/expresscart",
+    "databaseConnectionString": "mongodb://expresscart-mongodb:27017/expresscart",
     "theme": "Cloth",
     "trackStock": false,
     "orderHook": "",
