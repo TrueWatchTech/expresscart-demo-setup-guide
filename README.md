@@ -1,4 +1,4 @@
-![TruewatchShop](./png/Truewatch-shop.pnglogo.png)
+![TruewatchShop](./png/Truewatch-shop.png)
 
 Check out the documentation [here](https://github.com/mrvautin/expressCart/wiki).
 
