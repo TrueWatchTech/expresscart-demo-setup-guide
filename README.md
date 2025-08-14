@@ -51,3 +51,7 @@ Before setting up the project, ensure the following:
    ```bash
    docker exec -it expresscart npm run testdata
    ```
+
+### Steps to Set Up the RUM
+1. Login to your truewatch console go to  Real User Monitoring > Application List > Create Application [📖 Instructions here](https://docs.truewatch.com/real-user-monitoring/)
+2.
