@@ -2,7 +2,7 @@
 ### This is Truewatchshop based on expresscart by Markmoffat
 Check out expresscart documentation [here](https://github.com/mrvautin/expressCart/wiki).
 
-View the Expresscart demo shop [here](https://expresscart-demo.markmoffat.com/).
+
 
 ---
 
@@ -26,8 +26,8 @@ Before setting up the project, ensure the following:
 
 1. **Account at Truewatch**: Create an account at [truewatch.com](https://truewatch.com) if required for integration.
 2. **Linux System with Internet Connection**: Ensure you are using a Linux system with a stable internet connection.
-3. **DataKit Installed**: Install DataKit from your account. Follow the instructions provided in your Truewatch account to set up DataKit.
-4. **Docker**: Install Docker by following the instructions [here](https://docs.docker.com/get-docker/).
+3. **DataKit Installed**: Install DataKit from your account. Follow the instructions provided in your Truewatch account to set up DataKit.[here](https://docs.truewatch.com/datakit/datakit-install/)
+4. **Docker**: Install Docker by following the instructions [here](https://docs.docker.com/get-docker/)
 5. **Docker Compose**: Install Docker Compose by following the instructions [here](https://docs.docker.com/compose/install/).
 6. **Git**: Install Git by running:
    ```bash
