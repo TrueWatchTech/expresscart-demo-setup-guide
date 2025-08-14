@@ -1,10 +1,8 @@
 ![TruewatchShop](./png/Truewatch-shop.png)
-
-Check out the documentation [here](https://github.com/mrvautin/expressCart/wiki).
-
-View the demo shop [here](https://expresscart-demo.markmoffat.com/).
-
 ### This is Truewatchshop based on expresscart by Markmoffat
+Check out expresscart documentation [here](https://github.com/mrvautin/expressCart/wiki).
+
+View the Expresscart demo shop [here](https://expresscart-demo.markmoffat.com/).
 
 ---
 
