@@ -22,7 +22,7 @@ The project is built using the following technologies:
 
 Before setting up the project, ensure the following:
 
-1. **Account at Truewatch**: 📝 Create an account at [truewatch.com](https://truewatch.com) if required for integration.
+1. **Account at Truewatch**: 📝 Create an account at [truewatch.com]https://id1-auth.truewatch.com/businessRegister) if required for integration.
 2. **Linux System with Internet Connection**: 💻 Ensure you are using a Linux system with a stable internet connection.
 3. **DataKit Installed**: 📦 Install DataKit from your account. Follow the instructions provided in your Truewatch account to set up DataKit. [📖 Instructions here](https://docs.truewatch.com/datakit/datakit-install/).
 4. **Docker**: 🐳 Install Docker by following the instructions [📖 here](https://docs.docker.com/get-docker/).
