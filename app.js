@@ -47,7 +47,8 @@ Pyroscope.init({
   serverAddress: 'http://host.docker.internal:4040',
   appName: 'expresscart',
   tags: {
-    region: 'id'
+    region: 'id',
+    service: 'expresscart',
   },
   logLevel: 'debug',
 });

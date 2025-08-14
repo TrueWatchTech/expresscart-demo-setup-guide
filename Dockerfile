@@ -29,6 +29,6 @@ RUN npm install express-winston
 #install pyroscope lib
 RUN npm install @pyroscope/nodejs
 VOLUME /var/expressCart/data
-:q
+
 EXPOSE 1111
 ENTRYPOINT ["npm", "start"]
