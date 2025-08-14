@@ -8,6 +8,20 @@ View the demo shop [here](https://expresscart-demo.markmoffat.com/).
 
 ---
 
+### Tech Stack
+
+The project is built using the following technologies:
+
+1. **Node.js**: Backend runtime environment for running JavaScript.
+2. **Express.js**: Web framework for building the application.
+3. **MongoDB**: NoSQL database for storing application data.
+4. **Docker**: Containerization platform for deploying the application.
+5. **Nginx**: Web server used as a reverse proxy.
+6. **Truewatch RUM / APM/ LOG**: Monitoring and tracing tool for performance and debugging.
+
+
+---
+
 ### Pre-requisites
 
 Before setting up the project, ensure the following:
