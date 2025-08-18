@@ -71,7 +71,7 @@ Before you begin, please make sure you have the following:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/mailagungdarmawan/expresscart-truewatch-demo.git
+   git clone https://github.com/TrueWatchTech/expresscart-truewatch-demo
    cd expresscart-truewatch-demo
    ```
 2. Install dependencies and build the project:
