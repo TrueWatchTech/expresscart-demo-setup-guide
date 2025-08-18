@@ -33,21 +33,35 @@ Before you begin, please make sure you have the following:
 
 2. **Linux System with Internet Connection** 💻  
    Use a Linux machine (physical or virtual) with a stable internet connection.  
-   > *Tip: We recommend using a Linux VM for isolation and ease of setup. If you don’t have one, you can use [Oracle VirtualBox](https://www.virtualbox.org/) or [OrbStack](https://orbstack.dev/) to create a virtual environment.*. 
+   > *Tip: We recommend using a Linux VM for isolation and ease of setup. If you don’t have one, you can use [Oracle VirtualBox](https://www.virtualbox.org/) or [OrbStack](https://orbstack.dev/) to create a virtual environment.*. This training sandbox is created using **Orbstack** and **Ubuntu 22.04.5 LTS**. 
 
 3. **DataKit Installed** 📦  
    Install DataKit from your Truewatch account to enable tracing and monitoring.  
-   Follow the official [DataKit installation guide](https://docs.truewatch.com/datakit/datakit-install/).
+   Official [DataKit installation guide](https://docs.truewatch.com/datakit/datakit-install/).
+   
+   To Install your Datakit Go To your [Truewatch platfrom](https://id1-auth.truewatch.com), and Login with your Truewatch credentials. Navigate to **Integrations > Datakit**
+   
+   Copy Deploy Script 
+   ![📖 Refer to this snapshot](./png/datakit-1.png)
+   
+   Goto your freshly installed Linux machine and paste Deploy Script:
+   ```bash
+   DK_DATAWAY="https://id1-openway.truewatch.com?token=tkn_xxxxxxxx" bash -c "$(curl -L https://static.truewatch.com/datakit/install.sh)" 
+   ```
 
 4. **Docker** 🐳  
    Install Docker to run the application in containers.  
    [Get Docker instructions here](https://docs.docker.com/get-docker/).
 
-5. **Docker Compose** 🛠️  
-   Install Docker Compose to orchestrate multi-container setups.  
-   [Get Docker Compose instructions here](https://docs.docker.com/compose/install/).
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y git docker.io docker-compose
+   sudo usermod -aG docker $USER
+   newgrp docker
+   ```
+   > *Note: The last two commands add your user to the `docker` group so you can run Docker without `sudo`. You may need to log out and log back in for this
 
-6. **Git** 🧰  
+5. **Git** 🧰  
    Install Git to clone the repository and manage source code:
    ```bash
    sudo apt-get update
