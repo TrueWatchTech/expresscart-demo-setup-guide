@@ -88,7 +88,7 @@ Before you begin, please make sure you have the following:
    ```
 ### Steps to Set Up Infra Monitoring
 
-1. By installing Datakit as shown in the **Step 3** [Pre-requisites](#⚙️-pre-requisites) section. 
+1. By installing Datakit as shown in the **Step 3** [Pre-requisites](#️-pre-requisites) section. 
    The Linux host installed with datakit will send its metrics data to Truewatch platform. 
    Validate this by going to your [Truewatch platfrom](https://id1-auth.truewatch.com). Navigate to **Infrastructure> Host**. Click on **Honeycomb** to change view to *Honeycomb View*. ![📖 Refer to this snapshot](./png/inframon-1.png)
    you should be able to see your host. Hover your mouse, to see your Hosts at-a-glance key metrics (CPU, MEM Usage, load5). 
