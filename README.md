@@ -41,14 +41,18 @@ Before you begin, please make sure you have the following:
    
    To Install your Datakit Go To your [Truewatch platfrom](https://id1-auth.truewatch.com), and Login with your Truewatch credentials. Navigate to **Integrations > Datakit**
    
-   Copy Deploy Script 
+   Copy *Deploy Script* highlighted in green in the snapshot below
    ![📖 Refer to this snapshot](./png/datakit-1.png)
    
-   Goto your freshly installed Linux machine and paste Deploy Script:
+   Goto your freshly installed Linux machine and Apply *Deploy Script* in the console:
    ```bash
    DK_DATAWAY="https://id1-openway.truewatch.com?token=tkn_xxxxxxxx" bash -c "$(curl -L https://static.truewatch.com/datakit/install.sh)" 
    ```
-
+   verify **datakit** is running
+   ```bash
+   ps aux | grep datakit
+   root         806 11.6  0.3 2036304 34012 ?       Sl   01:59 116:22 /usr/local/datakit/externals/datakit-ebpf run --datakit-apiserver 0.0.0.0:9529 --hostname ubuntu --l7net-enabled httpflow --pprof-host 127.0.0.1 --pprof-port 6061 --netlog-metric --netlog-log --trace-env-list DK_BPFTRACE_SERVICE,DD_SERVICE,OTEL_SERVICE_NAME --enabled ebpf-net,ebpf-trace 
+   ```
 4. **Docker** 🐳  
    Install Docker to run the application in containers.  
    [Get Docker instructions here](https://docs.docker.com/get-docker/).
