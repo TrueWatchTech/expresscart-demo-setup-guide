@@ -7,7 +7,7 @@ Check out expresscart documentation [📖 here](https://github.com/mrvautin/expr
 
 > **ℹ️ Intention:**  
 > The purpose of **Truewatchshop** is to provide a training sandbox environment for customers and partners.  
-> This sandbox allows users to explore, experiment, and learn about monitoring, tracing, and application performance management using Truewatch in a safe, hands-on setting. Application has been instrumented, focus of the training sandbox is how to setup datakit and onboard the data to Truewatch platform
+> This sandbox allows users to explore, experiment, and learn about monitoring, tracing, and application performance management using Truewatch in a safe, hands-on setting. Application has been instrumented, focus of the training sandbox is how to onboard the data to Truewatch platform
 
 ---
 
