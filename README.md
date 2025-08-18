@@ -162,7 +162,7 @@ Create a client token:
 9. Interact with your apps, login with user *test@test.com* with password of *test*, and simulate a user selecting a product to cart. 
 
 10. Go To your [Truewatch Platfrom](https://id1-auth.truewatch.com), Go to **RUM > Application**, and select your App. Observe statistic under **Analisys Dashboard**.
-
+![📖 Refer to this snapshot](./png/RUM-9.png)
 
 ### Steps to Set Up APM
 
