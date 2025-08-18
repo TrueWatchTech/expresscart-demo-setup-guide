@@ -41,7 +41,7 @@ Before you begin, please make sure you have the following:
    
    To Install your Datakit Go To your [Truewatch platfrom](https://id1-auth.truewatch.com), and Login with your Truewatch credentials. Navigate to **Integrations > Datakit**
    
-   Copy *Deploy Script* highlighted in green in the snapshot below
+   Copy *Deploy Script* highlighted in green as shown in the snapshot below
    ![📖 Refer to this snapshot](./png/datakit-1.png)
    
    Goto your freshly installed Linux machine and Apply *Deploy Script* in the console:
