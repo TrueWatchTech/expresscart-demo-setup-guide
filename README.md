@@ -37,7 +37,7 @@ Before you begin, please make sure you have the following:
 
 3. **DataKit Installed** 📦  
    Install DataKit from your Truewatch account to enable tracing and monitoring.  
-   Official [DataKit installation guide](https://docs.truewatch.com/datakit/datakit-install/).
+   More on Official Datakit installation [here](https://docs.truewatch.com/datakit/datakit-install/).
    
    To Install your Datakit Go To your [Truewatch platfrom](https://id1-auth.truewatch.com), and Login with your Truewatch credentials. Navigate to **Integrations > Datakit**
    
@@ -86,6 +86,34 @@ Before you begin, please make sure you have the following:
    ```bash
    docker exec -it expresscart npm run testdata
    ```
+### Steps to Set Up Infra Monitoring
+
+1. By installing Datakit as shown in the **Step 3** [Pre-requisites](#⚙️-pre-requisites) section. 
+   The Linux host installed with datakit will send its metrics data to Truewatch platform. 
+   Validate this by going to your [Truewatch platfrom](https://id1-auth.truewatch.com). Navigate to **Infrastructure> Host**. Click on **Honeycomb** to change view to *Honeycomb View*. ![📖 Refer to this snapshot](./png/inframon-1.png)
+   you should be able to see your host. Hover your mouse, to see your Hosts at-a-glance key metrics (CPU, MEM Usage, load5). 
+
+2. Enable container monitoring, in this case is Docker. By configuring Datakit *container.conf*
+
+   Simply go to your Linux console, change Directory to */usr/local/datakit/conf.d/contaniner/*. Then copy *container.conf.sample* to *container.conf*
+
+   ```bash
+   cd /usr/local/datakit/conf.d/container
+   sudo cp container.conf.sample container.conf
+   ```
+   Restart Datakit
+
+   ```bash
+   sudo Datakit service -R
+   ```
+
+   Validate this by going to your [Truewatch platfrom](https://id1-auth.truewatch.com). Navigate to **Infrastructure> Containers**. ![📖 Refer to this snapshot](./png/inframon-2.png)
+
+3. Navigate to **Scenes > New Dashboard**. Under **Template Name** type *Docker*, hit enter. You'll get *Docker Monitor View* Template, Click on it. Give it a name and click confirm. ![📖 Refer to this snapshot](./png/inframon-3.png)
+
+4. After the above step, you'll arrived at the Docker Monitor View. Below is the example, you can apply filter using fields on the top left namely *(Host Name, Container Name, Container ID)*. ![📖 Refer to this snapshot](./png/inframon-4.png)
+
+
 
 ### Steps to Set Up RUM
 
