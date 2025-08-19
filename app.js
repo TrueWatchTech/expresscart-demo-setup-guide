@@ -49,6 +49,15 @@ Pyroscope.init({
   tags: {
     region: 'id',
     service: 'expresscart',
+    // Add dynamic tags for trace and span IDs
+    get dd_trace_id() {
+      const span = tracer.scope().active();
+      return span ? span.context().toTraceId() : undefined;
+    },
+    get dd_span_id() {
+      const span = tracer.scope().active();
+      return span ? span.context().toSpanId() : undefined;
+    }
   },
   logLevel: 'debug',
 });
