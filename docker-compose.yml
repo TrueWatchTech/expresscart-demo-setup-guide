@@ -13,6 +13,7 @@ services:
       DD_LOGS_INJECTION: ${DD_LOGS_INJECTION}
       DD_TRACE_128_BIT_TRACEID_GENERATION_ENABLED: ${DD_TRACE_128_BIT_TRACEID_GENERATION_ENABLED}  # DataKit trace port (default: 9529)
       DD_SERVICE: ${DD_SERVICE_EXPRESSCART}
+      DD_TRACE_ENABLED: ${DD_TRACE_ENABLED}
     ports:
       - "1111:1111"
     links:
@@ -29,6 +30,7 @@ services:
       DD_LOGS_INJECTION: ${DD_LOGS_INJECTION}
       DD_ENV: ${DD_ENV}
       DD_TRACE_128_BIT_TRACEID_GENERATION_ENABLED: ${DD_TRACE_128_BIT_TRACEID_GENERATION_ENABLED}
+      DD_TRACE_ENABLED: ${DD_TRACE_ENABLED}
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/nginx/nginx.conf:/etc/nginx/nginx.conf  
@@ -43,7 +45,9 @@ services:
       DD_AGENT_HOST: ${DD_AGENT_HOST}               # Must use localhost IP address. Containers unable to access localhost
       DD_TRACE_AGENT_PORT: ${DD_TRACE_AGENT_PORT}   # DataKit trace port (default: 9529)
       DD_SERVICE: ${DD_SERVICE_EXPRESSCART}
+      DD_LOGS_INJECTION: ${DD_LOGS_INJECTION}
       DD_ENV: ${DD_ENV}                             # Service name
+      DD_TRACE_ENABLED: ${DD_TRACE_ENABLED}
     volumes:
       - expresscart-mongo-data:/data/db
     ports:
