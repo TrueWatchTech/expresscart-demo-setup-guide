@@ -88,8 +88,8 @@ Before you begin, please make sure you have the following:
 
 1. **Clone the repository:**  
    ```bash
-   git clone https://github.com/TrueWatchTech/expresscart-truewatch-demo
-   cd expresscart-truewatch-demo
+   git clone https://github.com/TrueWatchTech/expresscart-demo-setup-guide
+   cd expresscart-demo-setup-guide
    ```
 
 2. **Install dependencies and build the project:**  
