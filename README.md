@@ -145,6 +145,7 @@ Before you begin, please make sure you have the following:
    - Go to your Linux console, change the directory to */usr/local/datakit/conf.d/container/*. Then copy *container.conf.sample* to *container.conf*:  
      ```bash
      cd /usr/local/datakit/conf.d/container
+     sudo cp container.conf.sample container.conf
      ```
 
    Validate this by going to your [Truewatch platform](https://id1-auth.truewatch.com).  
