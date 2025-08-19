@@ -7,7 +7,7 @@ Check out expresscart documentation [📖 here](https://github.com/mrvautin/expr
 
 > **ℹ️ Intention:**  
 > The purpose of **Truewatchshop** is to provide a training sandbox environment for customers and partners.  
-> This sandbox allows users to explore, experiment, and learn about monitoring, tracing, and application performance management using Truewatch in a safe, hands-on setting. Application has been instrumented, focus of the training sandbox is how to onboard the data to Truewatch platform
+> This sandbox allows users to explore, experiment, and learn about monitoring, tracing, and application performance management using Truewatch in a safe, hands-on setting. Application has been instrumented, focus of the training sandbox is how to onboard the data and get familiar to Truewatch platform and workflow
 
 ---
 
@@ -33,7 +33,12 @@ Before you begin, please make sure you have the following:
 
 2. **Linux System with Internet Connection** 💻  
    Use a Linux machine (physical or virtual) with a stable internet connection.  
-   > *Tip: We recommend using a Linux VM for isolation and ease of setup. If you don’t have one, you can use [Oracle VirtualBox](https://www.virtualbox.org/) or [OrbStack](https://orbstack.dev/) to create a virtual environment.*. This training sandbox is created using **Orbstack** and **Ubuntu 22.04.5 LTS**. 
+   > *Tip: We recommend using a Linux VM for isolation and ease of setup. If you don’t have one, you can use [Oracle VirtualBox](https://www.virtualbox.org/) for Windows machine or [OrbStack](https://orbstack.dev/) for MacOS to create a virtual environment.*. This training sandbox is created using **Orbstack** and **Ubuntu 22.04.5 LTS**. 
+   
+   If you choose to use Orbstack, you can find install guide [here](https://docs.orbstack.dev/)
+
+   If you choose to use Virtualbox, you find install guide [here](https://www.virtualbox.org/manual/ch01.html)
+   
 
 3. **DataKit Installed** 📦  
    Install DataKit from your Truewatch account to enable tracing and monitoring.  
