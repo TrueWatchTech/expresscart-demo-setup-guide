@@ -10,6 +10,7 @@ services:
       DD_ENV: ${DD_ENV}                             # DataKit environment
       DD_AGENT_HOST: ${DD_AGENT_HOST}               # Must use localhost IP address. Containers unable to access localhost
       DD_TRACE_AGENT_PORT: ${DD_TRACE_AGENT_PORT}
+      DD_LOGS_INJECTION: ${DD_LOGS_INJECTION}
       DD_TRACE_128_BIT_TRACEID_GENERATION_ENABLED: ${DD_TRACE_128_BIT_TRACEID_GENERATION_ENABLED}  # DataKit trace port (default: 9529)
       DD_SERVICE: ${DD_SERVICE_EXPRESSCART}
     ports:
