@@ -99,7 +99,7 @@ Before you begin, please make sure you have the following:
 
 3. **Start the services:**  
    ```bash
-   docker-compose up
+   docker-compose up -d
    ```
 
 4. **Populate the database with test data:**  
@@ -213,7 +213,7 @@ Before you begin, please make sure you have the following:
 7. Start and stop the services:
    ```bash
    docker-compose down
-   docker-compose up
+   docker-compose up -d
    ```
 
 8. Open your browser and go to [http://localhost:8080](http://localhost:8080). You should be able to view your web app running on port 8080.  
