@@ -41,8 +41,16 @@ const baseConfig = ajv.validate(require('./config/settingsSchema'), config);
 if(baseConfig === false){
     console.log(colors.red(`settings.json incorrect: ${ajv.errorsText()}`));
     process.exit(2);
-}
+};
 //Pyroscope
+try {
+const getDDIds = () => {
+const span = tracer.scope().active();
+if (!span) return { traceId: undefined, spanId: undefined };
+const ctx = span.context();
+return { traceId: ctx.toTraceId(), spanId: ctx.toSpanId() };
+};
+
 Pyroscope.init({
   serverAddress: 'http://host.docker.internal:4040',
   appName: 'expresscart',
@@ -50,20 +58,24 @@ Pyroscope.init({
     region: 'id',
     service: 'expresscart',
     // Add dynamic tags for trace and span IDs
-    get dd_trace_id() {
-      const span = tracer.scope().active();
-      return span ? span.context().toTraceId() : undefined;
-    },
-    get dd_span_id() {
-      const span = tracer.scope().active();
-      return span ? span.context().toSpanId() : undefined;
-    }
+    get dd_trace_id() { return getDDIds().traceId; },
+    get dd_span_id() { return getDDIds().spanId; }
+    //get dd_trace_id() {
+    //  const span = tracer.scope().active();
+    //  return span ? span.context().toTraceId() : undefined;
+    //},
+    //get dd_span_id() {
+    //  const span = tracer.scope().active();
+    //  return span ? span.context().toSpanId() : undefined;
+    //}
   },
   logLevel: 'debug',
 });
 // Start Pyroscope
 Pyroscope.start();
-
+} catch (err) {
+  console.error('Pyroscope initialization failed:', err);
+}
 // Validate the payment gateway config
 _.forEach(config.paymentGateway, (gateway) => {
     if(ajv.validate(
