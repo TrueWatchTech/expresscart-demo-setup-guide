@@ -142,10 +142,11 @@ Before you begin, please make sure you have the following:
    You should be able to see your host. Hover your mouse to see your host's at-a-glance key metrics (CPU, MEM Usage, load5).  
 
 2. Enable container monitoring, in this case Docker, by configuring Datakit *container.conf*:  
-   - Go to your Linux console, change the directory to */usr/local/datakit/conf.d/container/*. Then copy *container.conf.sample* to *container.conf*:  
+   - Go to your Linux console, change the directory to */usr/local/datakit/conf.d/container/*. Then copy *container.conf.sample* to *container.conf* and restart Datakit:  
      ```bash
      cd /usr/local/datakit/conf.d/container
      sudo cp container.conf.sample container.conf
+     sudo datakit service -R
      ```
 
    Validate this by going to your [Truewatch platform](https://id1-auth.truewatch.com).  
