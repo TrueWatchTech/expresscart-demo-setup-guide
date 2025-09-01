@@ -234,3 +234,11 @@ Before you begin, please make sure you have the following:
 ### ⚡ Steps to Set Up APM
 
 **WIP**
+1. By installing Datakit as shown in the **Step 3** [Pre-requisites](#️-pre-requisites) section.  
+   The expresscart application installed will send its APM data to the Truewatch platform.    
+   Validate this by going to your [Truewatch platform](https://id1-auth.truewatch.com).  
+   Navigate to **APM > Service > Service Map**. You'll find services and their dependencies.
+   Hover your mouse to each sercvices, you can observ at-a-glance KPIs such as response time, request per seconds, and errors.  
+   You can also view the **Overview**** tab to see key KPIs details
+   
+   ![📖 Refer to this snapshot](./png/APM-1.png)
