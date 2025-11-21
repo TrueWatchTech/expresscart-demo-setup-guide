@@ -35,6 +35,12 @@ updateHosts() {
 
 set -e
 
+# Allow overriding the DataKit version via first CLI argument
+dk_version="${1:-1.83.1}"
+if [ $# -gt 0 ]; then
+	shift
+fi
+
 domain="
 static.guance.com
 openway.guance.com
@@ -129,7 +135,7 @@ if [ -n "$DK_INSTALLER_BASE_URL" ]; then
 	printf "* Set installer_base_url => $DK_INSTALLER_BASE_URL\n"
 fi
 
-installer_file="installer-${os}-${arch}-1.83.1"
+installer_file="installer-${os}-${arch}-${dk_version}"
 printf "* Detect installer ${installer_file}\n"
 
 installer_url="${installer_base_url}/${installer_file}"
@@ -137,7 +143,7 @@ installer_url="${installer_base_url}/${installer_file}"
 tmpdir=$(mktemp -d -p .) # create tmpdir under current dir
 trap 'rm -rf "$tmpdir"' EXIT INT TERM
 
-installer_bin=${tmpdir}/dk-installer-1.83.1
+installer_bin=${tmpdir}/dk-installer-${dk_version}
 
 verbose_mode=
 if [ -n "$DK_VERBOSE" ]; then

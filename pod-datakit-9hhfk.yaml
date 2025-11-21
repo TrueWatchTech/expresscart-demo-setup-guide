@@ -1,0 +1,300 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/restartedAt: "2025-09-29T16:41:56+08:00"
+  creationTimestamp: "2025-09-29T08:42:14Z"
+  generateName: datakit-
+  generation: 1
+  labels:
+    app: daemonset-datakit
+    controller-revision-hash: 8559f6b66f
+    pod-template-generation: "6"
+  name: datakit-9hhfk
+  namespace: datakit
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: DaemonSet
+    name: datakit
+    uid: 5508b93b-eb0a-43f2-805f-422739d19a66
+  resourceVersion: "1009930"
+  uid: 9185fe71-ae6f-4a18-90bb-13699e7c28ea
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchFields:
+          - key: metadata.name
+            operator: In
+            values:
+            - kind-control-plane
+  containers:
+  - env:
+    - name: POD_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: ENV_K8S_NODE_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.hostIP
+    - name: ENV_K8S_NODE_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: spec.nodeName
+    - name: ENV_K8S_CLUSTER_NODE_NAME
+      value: cluster_a_$(ENV_K8S_NODE_NAME)
+    - name: ENV_DATAWAY
+      value: https://id1-openway.truewatch.com?token=tkn_894422552d794a91af0e6159ac12836a
+    - name: ENV_CLUSTER_NAME_K8S
+      value: kindcluster
+    - name: ENV_GLOBAL_HOST_TAGS
+      value: host=__datakit_hostname,host_ip=__datakit_ip
+    - name: ENV_GLOBAL_ELECTION_TAGS
+    - name: ENV_DEFAULT_ENABLED_INPUTS
+      value: statsd,dk,cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,kubernetesprometheus,ddtrace
+    - name: ENV_ENABLE_ELECTION
+      value: enable
+    - name: ENV_INPUT_CONTAINER_ENABLE_POD_METRIC
+      value: "true"
+    - name: ENV_HTTP_LISTEN
+      value: 0.0.0.0:9529
+    - name: ENV_REQUEST_RATE_LIMIT
+      value: "0"
+    - name: HOST_PROC
+      value: /rootfs/proc
+    - name: HOST_SYS
+      value: /rootfs/sys
+    - name: HOST_ETC
+      value: /rootfs/etc
+    - name: HOST_VAR
+      value: /rootfs/var
+    - name: HOST_RUN
+      value: /rootfs/run
+    - name: HOST_DEV
+      value: /rootfs/dev
+    - name: HOST_ROOT
+      value: /rootfs
+    image: pubrepo.truewatch.com/truewatch/datakit:1.83.0
+    imagePullPolicy: IfNotPresent
+    name: datakit
+    ports:
+    - containerPort: 9529
+      hostPort: 9529
+      name: http-port
+      protocol: TCP
+    - containerPort: 8125
+      hostPort: 8125
+      name: statsd-port
+      protocol: UDP
+    - containerPort: 4317
+      hostPort: 4317
+      name: otel-grpc-port
+      protocol: TCP
+    - containerPort: 9533
+      hostPort: 9533
+      name: logfwd-port
+      protocol: TCP
+    resources:
+      limits:
+        cpu: "2"
+        memory: 4Gi
+      requests:
+        cpu: 200m
+        memory: 128Mi
+    securityContext:
+      privileged: true
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /usr/local/datakit/cache
+      name: cache
+    - mountPath: /rootfs
+      mountPropagation: HostToContainer
+      name: rootfs
+    - mountPath: /var/run
+      mountPropagation: HostToContainer
+      name: run
+    - mountPath: /sys/kernel/debug
+      name: debugfs
+    - mountPath: /var/lib/containerd/container_logs
+      name: container-logs
+    - mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kubernetesprometheus.conf
+      name: datakit-conf
+      readOnly: true
+      subPath: kubernetesprometheus.conf
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-589nw
+      readOnly: true
+    workingDir: /usr/local/datakit
+  dnsPolicy: ClusterFirstWithHostNet
+  enableServiceLinks: true
+  hostIPC: true
+  hostNetwork: true
+  hostPID: true
+  nodeName: kind-control-plane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: datakit
+  serviceAccountName: datakit
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - operator: Exists
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+  - effect: NoSchedule
+    key: node.kubernetes.io/disk-pressure
+    operator: Exists
+  - effect: NoSchedule
+    key: node.kubernetes.io/memory-pressure
+    operator: Exists
+  - effect: NoSchedule
+    key: node.kubernetes.io/pid-pressure
+    operator: Exists
+  - effect: NoSchedule
+    key: node.kubernetes.io/unschedulable
+    operator: Exists
+  - effect: NoSchedule
+    key: node.kubernetes.io/network-unavailable
+    operator: Exists
+  volumes:
+  - configMap:
+      defaultMode: 420
+      name: datakit-conf
+    name: datakit-conf
+  - hostPath:
+      path: /
+      type: ""
+    name: rootfs
+  - hostPath:
+      path: /var/run
+      type: ""
+    name: run
+  - hostPath:
+      path: /sys/kernel/debug
+      type: ""
+    name: debugfs
+  - hostPath:
+      path: /root/datakit_cache
+      type: ""
+    name: cache
+  - hostPath:
+      path: /var/lib/containerd/container_logs
+      type: ""
+    name: container-logs
+  - name: kube-api-access-589nw
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-29T08:42:16Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-29T08:42:15Z"
+    observedGeneration: 1
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-29T08:42:16Z"
+    observedGeneration: 1
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-29T08:42:16Z"
+    observedGeneration: 1
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-29T08:42:15Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - allocatedResources:
+      cpu: 200m
+      memory: 128Mi
+    containerID: containerd://d9a02113cd059470baa990da074ac51a104d4007bbf3c2957383b6b095e8ac1c
+    image: pubrepo.truewatch.com/truewatch/datakit:1.83.0
+    imageID: pubrepo.truewatch.com/truewatch/datakit@sha256:3e8405c04603f39d0fb35a6f95c8f2a910ee41dbffbb21568beced85b1de6cc8
+    lastState: {}
+    name: datakit
+    ready: true
+    resources:
+      limits:
+        cpu: "2"
+        memory: 4Gi
+      requests:
+        cpu: 200m
+        memory: 128Mi
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2025-09-29T08:42:15Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        - 10001
+        uid: 0
+    volumeMounts:
+    - mountPath: /usr/local/datakit/cache
+      name: cache
+    - mountPath: /rootfs
+      name: rootfs
+    - mountPath: /var/run
+      name: run
+    - mountPath: /sys/kernel/debug
+      name: debugfs
+    - mountPath: /var/lib/containerd/container_logs
+      name: container-logs
+    - mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kubernetesprometheus.conf
+      name: datakit-conf
+      readOnly: true
+      recursiveReadOnly: Disabled
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-589nw
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 172.20.0.2
+  hostIPs:
+  - ip: 172.20.0.2
+  observedGeneration: 1
+  phase: Running
+  podIP: 172.20.0.2
+  podIPs:
+  - ip: 172.20.0.2
+  qosClass: Burstable
+  startTime: "2025-09-29T08:42:15Z"

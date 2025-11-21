@@ -2,6 +2,7 @@
 const tracer = require('dd-trace').init({
     logInjection: true,
 });
+const statsdClient = tracer && tracer.dogstatsd ? tracer.dogstatsd : null;
 const Pyroscope = require('@pyroscope/nodejs');
 const fs = require('fs');
 const yenv = require('yenv');
@@ -116,6 +117,22 @@ const transactions = require('./routes/transactions');
 const reviews = require('./routes/reviews');
 
 const app = express();
+
+// Emit a Datadog custom metric for every HTTP request
+if(statsdClient){
+    app.use((req, res, next) => {
+        res.on('finish', () => {
+            const tags = [
+                `method:${req.method}`,
+                `route:${req.route ? req.route.path : req.path}`,
+                `status:${res.statusCode}`,
+                `service:expresscart`
+            ];
+            statsdClient.increment('expresscart.request.count', 1, tags);
+        });
+        next();
+    });
+}
 
 // Language initialize
 i18n.configure({
